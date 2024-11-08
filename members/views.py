@@ -11,3 +11,18 @@ def members(request):
         'members': members
     }
     return HttpResponse(template.render(context, request))
+
+def details(request, id):
+    member = Member.objects.get(id=id)
+    template = loader.get_template('details.html')
+    context = {
+        'members': member
+    }
+    return HttpResponse(template.render(context, request))
+def badrequest(request):
+    template = loader.get_template('404.html')
+    return HttpResponse(template.render())
+
+def main(request):
+    template = loader.get_template('main.html')
+    return HttpResponse(template.render())
